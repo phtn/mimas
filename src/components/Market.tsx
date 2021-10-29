@@ -24,8 +24,12 @@ function Market() {
       .catch((err) => console.error(err));
   }, []);
 
+  function comma(x: string) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   return (
-    <div className="w-full bg-gray-800">
+    <div className="w-full bg-gray-800 my-29">
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1">
         <div className="text-center pb-12">
           <h2 className="text-base font-bold text-indigo-600">
@@ -40,6 +44,8 @@ function Market() {
           {coins.map((coin: CoinType) => {
             const { id, symbol, name, current_price, image } = coin;
 
+            const fixed = current_price.toFixed(2);
+
             return (
               <div
                 className="w-full bg-gray-900 rounded-lg shadow-lg p-12 flex flex-col justify-center items-center"
@@ -48,17 +54,20 @@ function Market() {
                 <Zoom>
                   <div className="mb-4">
                     <img
-                      className="object-center object-cover rounded-full h-20 w-20"
+                      className="object-center object-cover rounded-full h-16 w-16"
                       src={image}
                       alt="logo"
                     />
                   </div>
                   <div className="text-center">
-                    <p className="text-sm text-gray-400 font-bold mb-2">
-                      {symbol}-{name}
+                    <p className="text-sm text-indigo-500  mb-2">
+                      <span className="font-bold uppercase text-indigo-300 mx-2">
+                        {symbol}
+                      </span>
+                      {name}
                     </p>
-                    <p className="text-xl text-gray-100 font-normal">
-                      $ {current_price}
+                    <p className="text-xl text-green-300 font-regular">
+                      $ {comma(fixed)}
                     </p>
                   </div>
                 </Zoom>
