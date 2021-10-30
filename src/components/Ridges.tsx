@@ -36,7 +36,7 @@ export default function Ridges() {
       <div className="px-5">
         <div className="pt-5 max-w-8xl mx-auto sm:px-6 lg:px-1 overflow-auto content">
           <div style={styles.container}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {coins.map((coin: CoinType) => {
                 const {
                   id,
@@ -77,8 +77,9 @@ export default function Ridges() {
                       <p className="text-xl text-gray-800 font-bold font-mono">
                         $ {comma(current_price)}
                       </p>
-                      <p className="text-sm text-gray-700 font-mono py-2">
-                        vol $ {comma(total_volume)}
+                      <p className="text-sm text-gray-700 font-mono pt-3">
+                        <span className="text-xs">vol</span> ${" "}
+                        {comma(total_volume)}
                       </p>
                     </div>
                     {/* </Zoom> */}
@@ -88,11 +89,11 @@ export default function Ridges() {
             </div>
           </div>
         </div>
-        <p className="text-gray-600 text-sm pl-2">
+        <p className="text-gray-600 text-sm pl-1 font-mono">
           built on 🔥 by &nbsp;
-          <span className="text-gray-800 font-bold font-mono">
-            phtn458
-          </span>{" "}
+          <span className="text-gray-800 font-bold">phtn458</span>
+          &nbsp; with{" "}
+          <span className="text-gray-800 font-bold">coingecko_api</span>
         </p>
       </div>
     </>
