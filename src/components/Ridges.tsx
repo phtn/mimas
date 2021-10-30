@@ -55,6 +55,7 @@ export default function Ridges() {
                     className="w-full shadow-lg rounded-md p-12 bg-gray-400 cursor-pointer "
                     key={id}
                   >
+                    {/* this should be inside a grid */}
                     <div className="object-left object-top py-1 px-1 bg-gray-500 text-bold text-pink-100 w-8 flex shadow-sm justify-center items-center rounded-lg">
                       {market_cap_rank}
                     </div>
@@ -87,7 +88,7 @@ export default function Ridges() {
             </div>
           </div>
         </div>
-        <p className="text-gray-600 text-sm">
+        <p className="text-gray-600 text-sm pl-2">
           built on 🔥 by &nbsp;
           <span className="text-gray-800 font-bold font-mono">
             phtn458
