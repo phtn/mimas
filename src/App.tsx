@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div className=" bg-cover bg-pink-100 py-2">
-      <div className="grid grid-cols-3 flex h-8 mx-11">
+      <div className="grid grid-cols-3 flex h-8 px-11 shadow-lg">
         <div style={styles.dateText}>
           <span style={{ marginRight: 10 }}>{days[date.getDay()]}</span>
           {date.toLocaleDateString()}

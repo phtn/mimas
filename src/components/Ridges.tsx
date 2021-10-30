@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Zoom from "react-awesome-reveal";
+// import { Zoom } from "react-awesome-reveal";
 import axios from "axios";
 import R2 from "../static/assets/r2.jpg";
 
@@ -33,8 +33,8 @@ export default function Ridges() {
 
   return (
     <>
-      <div className="px-10">
-        <div className="max-w-8xl mx-auto px-10 sm:px-6 lg:px-1 overflow-auto content">
+      <div className="px-5">
+        <div className="pt-5 max-w-8xl mx-auto sm:px-6 lg:px-1 overflow-auto content">
           <div style={styles.container}>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
               {coins.map((coin: CoinType) => {
@@ -55,34 +55,32 @@ export default function Ridges() {
                     className="w-full shadow-lg rounded-md p-12 bg-gray-400 cursor-pointer "
                     key={id}
                   >
-                    {/* <Fade> */}
                     <div className="object-left object-top py-1 px-1 bg-gray-500 text-bold text-pink-100 w-8 flex shadow-sm justify-center items-center rounded-lg">
                       {market_cap_rank}
                     </div>
-                    <Zoom triggerOnce={true}>
-                      <div className="mb-4 flex flex-col justify-center items-center hover:filter blur">
-                        <img
-                          className="object-center object-cover rounded-full h-16 w-16"
-                          src={image}
-                          alt="logo"
-                        />
-                      </div>
-                      <div className="text-center">
-                        <p className="text-sm text-gray-800  mb-2">
-                          <span className="font-bold uppercase text-gray-700 mx-2">
-                            {symbol}
-                          </span>
-                          {name}
-                        </p>
-                        <p className="text-xl text-gray-800 font-bold font-mono">
-                          $ {comma(current_price)}
-                        </p>
-                        <p className="text-sm text-gray-700 font-mono py-2">
-                          vol $ {comma(total_volume)}
-                        </p>
-                      </div>
-                    </Zoom>
-                    {/* </Fade> */}
+                    {/* <Zoom triggerOnce={true}> */}
+                    <div className="mb-4 flex flex-col justify-center items-center hover:filter blur">
+                      <img
+                        className="object-center object-cover rounded-full h-16 w-16"
+                        src={image}
+                        alt="logo"
+                      />
+                    </div>
+                    <div className="text-center">
+                      <p className="text-sm text-gray-800  mb-2">
+                        <span className="font-bold uppercase text-gray-700 mx-2">
+                          {symbol}
+                        </span>
+                        {name}
+                      </p>
+                      <p className="text-xl text-gray-800 font-bold font-mono">
+                        $ {comma(current_price)}
+                      </p>
+                      <p className="text-sm text-gray-700 font-mono py-2">
+                        vol $ {comma(total_volume)}
+                      </p>
+                    </div>
+                    {/* </Zoom> */}
                   </div>
                 );
               })}
