@@ -22,7 +22,7 @@ function Market() {
         coinsSet(response.data);
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [coins]);
 
   function comma(x: string) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
