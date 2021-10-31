@@ -88,11 +88,11 @@ export default function Donate() {
       <div className="pt-5 flex overflow-auto content">
         <div>
           <h2 className="text-green-700 font-mono font-bold justify-center align-item flex mb-2 bg-gray-200 py-1 rounded-md">
-            Help me further improve this app!
+            Help me improve this app!
           </h2>
           <ul className="divide-y divide-pink-200 bg-gray-400 rounded-sm">
             {address.map((item) => (
-              <li key={item.symbol} className="py-4 flex">
+              <li key={item.symbol} className="py-4 flex overflow">
                 <div className="ml-3">
                   <p className="text-sm font-medium text-gray-900 mb-1">
                     <span className="uppercase font-bold font mono text-gray-700 pr-2">
@@ -101,7 +101,9 @@ export default function Donate() {
                     </span>
                     {item.name}
                   </p>
-                  <p className="text-xs text-pink-100 font-mono">{item.add}</p>
+                  <p className="text-xs text-pink-100 font-mono overflow">
+                    {item.add}
+                  </p>
                 </div>
               </li>
             ))}
