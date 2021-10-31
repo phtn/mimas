@@ -18,7 +18,7 @@ function App() {
 
   // const [date] = useState(new Date());
 
-  const [tab, tabSet] = useState(0);
+  const [tab, tabSet] = useState(1);
 
   function getPage(t: number) {
     switch (t) {
