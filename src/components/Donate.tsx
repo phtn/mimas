@@ -84,9 +84,9 @@ export default function Donate() {
     },
   ];
   return (
-    <div className="px-5">
-      <div className="pt-5 max-w-8xl mx-auto sm:px-6 lg:px-1 overflow-auto content">
-        <div style={styles.container}>
+    <div className="px-1">
+      <div className="pt-5 flex overflow-auto content">
+        <div>
           <h2 className="text-green-700 font-mono font-bold justify-center align-item flex mb-2 bg-gray-200 py-1 rounded-md">
             Help me further improve this app!
           </h2>
@@ -111,10 +111,3 @@ export default function Donate() {
     </div>
   );
 }
-
-const styles = {
-  container: {
-    height: "100vh",
-    top: 100,
-  },
-};
