@@ -10,6 +10,7 @@ type CoinTypes = {
   market_cap_rank: number;
   total_volume: number;
   price_change_percentage_24h: number;
+  market_cap: number;
 };
 
 const url =
@@ -47,13 +48,26 @@ export default function CoinsPage() {
     }
   }
 
+  function convertToInternationalCurrencySystem(cap: number) {
+    // Nine Zeroes for Billions
+    return Math.round(Number(cap)) >= 1.0e12
+      ? (Math.round(Number(cap)) / 1.0e12).toFixed(1) + "T"
+      : // Six Zeroes for Millions
+      Math.round(Number(cap)) >= 1.0e9
+      ? (Math.round(Number(cap)) / 1.0e9).toFixed(1) + "B"
+      : // Three Zeroes for Thousands
+      Math.round(Number(cap)) >= 1.0e6
+      ? (Math.round(Number(cap)) / 1.0e6).toFixed(1) + "M"
+      : Math.round(Number(cap));
+  }
+
   return (
     <>
       <div className="px-5">
         <div className="pt-5 max-w-8xl mx-auto sm:px-6 lg:px-1 overflow-auto content">
           <div style={styles.container}>
             <h2 className="text-green-700 font-mono font-bold justify-center align-item flex mb-2 bg-gray-200 py-1 rounded-md">
-              Top 100
+              Top 100 Cryptos
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {coins.map((coin: CoinTypes) => {
@@ -66,6 +80,7 @@ export default function CoinsPage() {
                   market_cap_rank,
                   total_volume,
                   price_change_percentage_24h,
+                  market_cap,
                 } = coin;
 
                 // let;
@@ -80,7 +95,7 @@ export default function CoinsPage() {
                     </div>
                     <div className="mb-4 flex flex-col justify-center items-center hover:filter blur">
                       <img
-                        className="object-center object-cover rounded-full h-16 w-16"
+                        className="object-center object-cover h-16 w-16"
                         src={image}
                         alt="logo"
                       />
@@ -91,6 +106,9 @@ export default function CoinsPage() {
                           {symbol}
                         </span>
                         {name}
+                        <span className="font-mono font-bold text-sm ml-2">
+                          {convertToInternationalCurrencySystem(market_cap)}
+                        </span>
                       </p>
                       <p className="text-xl text-gray-800 font-bold font-mono">
                         $ {comma(current_price)}{" "}

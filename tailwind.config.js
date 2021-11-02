@@ -19,6 +19,7 @@ module.exports = {
   variants: {
     extend: {
       cursor: ["hover", "focus"],
+      textColor: ["hover", "active", "focus"],
     },
   },
 };
