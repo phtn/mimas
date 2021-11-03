@@ -34,7 +34,7 @@ export default function TrendingPage() {
       <div className="px-5">
         <div className="pt-5 max-w-8xl mx-auto sm:px-6 lg:px-1 overflow-auto content">
           <div style={styles.container}>
-            <h2 className="text-green-700 font-mono font-bold justify-center align-item flex mb-2 bg-gray-200 py-1 rounded-md">
+            <h2 className="text-green-700 font-mono font-bold justify-center align-item flex mb-2 bg-gray-200 py-1 rounded-md shadow-md">
               Whose making waves?
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

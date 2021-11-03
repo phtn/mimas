@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { ImSpinner9 } from "react-icons/im";
 
 type CoinTypes = {
   id: string;
@@ -18,6 +19,7 @@ const url =
 
 export default function CoinsPage() {
   const [coins, coinsSet] = useState([]);
+  const [loading, loadingSet] = useState(true);
   let [isMounted, isMountedSet] = useState(false);
 
   useEffect(() => {
@@ -27,6 +29,7 @@ export default function CoinsPage() {
       .then((response) => {
         if (isMounted) {
           coinsSet(response.data);
+          loadingSet(false);
         }
       })
       .catch((err) => console.error(err));
@@ -65,72 +68,79 @@ export default function CoinsPage() {
     <>
       <div className="px-5">
         <div className="pt-5 max-w-8xl mx-auto sm:px-6 lg:px-1 overflow-auto content">
-          <div>
-            <h2 className="shadow-md text-green-700 font-mono font-bold justify-center align-item flex mb-2 bg-gray-200 py-1 border-2 border-gray-300 rounded-md">
+          <div style={styles.container}>
+            <h2 className="shadow-md text-green-700 font-mono font-bold justify-center align-item flex mb-2 bg-gray-200 py-1 rounded-md">
               Top 100 Cryptos
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {coins.map((coin: CoinTypes) => {
-                const {
-                  id,
-                  symbol,
-                  name,
-                  current_price,
-                  image,
-                  market_cap_rank,
-                  total_volume,
-                  price_change_percentage_24h,
-                  market_cap,
-                } = coin;
 
-                // let;
+            {loading ? (
+              <div className="flex justify-center py-10">
+                <ImSpinner9 className="h-10 w-10 animate-spin text-pink-300"/>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {coins.map((coin: CoinTypes) => {
+                  const {
+                    id,
+                    symbol,
+                    name,
+                    current_price,
+                    image,
+                    market_cap_rank,
+                    total_volume,
+                    price_change_percentage_24h,
+                    market_cap,
+                  } = coin;
 
-                return (
-                  <div
-                    className="w-full shadow-lg rounded-md p-12 bg-gray-400 cursor-pointer "
-                    key={id}
-                  >
-                    <div className="object-left object-top py-1 px-1 bg-gray-500 text-bold text-pink-100 w-8 flex shadow-sm justify-center items-center rounded-lg">
-                      {market_cap_rank}
+                  // let;
+
+                  return (
+                    <div
+                      className="w-full shadow-lg rounded-md p-12 bg-gray-400 cursor-pointer "
+                      key={id}
+                    >
+                      <div className="object-left object-top py-1 px-1 bg-gray-500 text-bold text-pink-100 w-8 flex shadow-sm justify-center items-center rounded-lg">
+                        {market_cap_rank}
+                      </div>
+                      <div className="mb-4 flex flex-col justify-center items-center hover:filter blur">
+                        <img
+                          className="object-center object-cover h-16 w-16"
+                          src={image}
+                          alt="logo"
+                        />
+                      </div>
+                      <div className="text-center">
+                        <p className="text-sm text-gray-800  mb-2">
+                          <span className="font-bold uppercase text-gray-700 mx-2">
+                            {symbol}
+                          </span>
+                          {name}
+                          <span className="font-mono font-bold text-sm ml-2">
+                            {convertToInternationalCurrencySystem(market_cap)}
+                          </span>
+                        </p>
+                        <p className="text-xl text-gray-800 font-bold font-mono">
+                          $ {comma(current_price)}{" "}
+                          <span
+                            className={`text-xs ${
+                              get24hChange(price_change_percentage_24h)
+                                ? "text-green-700"
+                                : "text-red-700"
+                            }`}
+                          >
+                            {price_change_percentage_24h.toFixed(2)}&nbsp;%
+                          </span>
+                        </p>
+                        <p className="text-sm text-gray-700 font-mono pt-3">
+                          <span className="text-xs">vol</span> ${" "}
+                          {comma(total_volume)}
+                        </p>
+                      </div>
                     </div>
-                    <div className="mb-4 flex flex-col justify-center items-center hover:filter blur">
-                      <img
-                        className="object-center object-cover h-16 w-16"
-                        src={image}
-                        alt="logo"
-                      />
-                    </div>
-                    <div className="text-center">
-                      <p className="text-sm text-gray-800  mb-2">
-                        <span className="font-bold uppercase text-gray-700 mx-2">
-                          {symbol}
-                        </span>
-                        {name}
-                        <span className="font-mono font-bold text-sm ml-2">
-                          {convertToInternationalCurrencySystem(market_cap)}
-                        </span>
-                      </p>
-                      <p className="text-xl text-gray-800 font-bold font-mono">
-                        $ {comma(current_price)}{" "}
-                        <span
-                          className={`text-xs ${
-                            get24hChange(price_change_percentage_24h)
-                              ? "text-green-700"
-                              : "text-red-700"
-                          }`}
-                        >
-                          {price_change_percentage_24h.toFixed(2)}&nbsp;%
-                        </span>
-                      </p>
-                      <p className="text-sm text-gray-700 font-mono pt-3">
-                        <span className="text-xs">vol</span> ${" "}
-                        {comma(total_volume)}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
         <p className="text-gray-600 text-sm pl-1 font-mono">
@@ -141,3 +151,8 @@ export default function CoinsPage() {
     </>
   );
 }
+const styles = {
+  container: {
+    height: "100vh",
+  },
+};
