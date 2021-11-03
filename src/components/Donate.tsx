@@ -110,6 +110,16 @@ export default function Donate() {
           </ul>
         </div>
       </div>
+      <div className="py-3 flex justify-center mt-2">
+          <p className="text-gray-600 text-xs pl-1 font-mono">
+            built on 🔥 by
+            <a className={"no-underline"} href="https://github.com/phtn/mimas">
+              <span className="text-gray-800 text-sm font-bold pl-2">
+                phtn458
+              </span>
+            </a>
+          </p>
+        </div>
     </div>
   );
 }

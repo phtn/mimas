@@ -75,7 +75,7 @@ export default function CoinsPage() {
 
             {loading ? (
               <div className="flex justify-center py-10">
-                <ImSpinner9 className="h-10 w-10 animate-spin text-pink-300"/>
+                <ImSpinner9 className="h-10 w-10 animate-spin text-pink-300" />
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -92,11 +92,10 @@ export default function CoinsPage() {
                     market_cap,
                   } = coin;
 
-                  // let;
 
                   return (
                     <div
-                      className="w-full shadow-lg rounded-md p-12 bg-gray-400 cursor-pointer "
+                      className="w-full shadow-md rounded-md p-12 bg-gray-400 cursor-pointer "
                       key={id}
                     >
                       <div className="object-left object-top py-1 px-1 bg-gray-500 text-bold text-pink-100 w-8 flex shadow-sm justify-center items-center rounded-lg">
@@ -143,10 +142,16 @@ export default function CoinsPage() {
             )}
           </div>
         </div>
-        <p className="text-gray-600 text-sm pl-1 font-mono">
-          built on 🔥 by &nbsp;
-          <span className="text-gray-800 font-bold">phtn458</span>
-        </p>
+        <div className="py-3 flex justify-center mt-2">
+          <p className="text-gray-600 text-xs pl-1 font-mono">
+            built on 🔥 by
+            <a className={"no-underline"} href="https://github.com/phtn/mimas">
+              <span className="text-gray-800 text-sm font-bold pl-2">
+                phtn458
+              </span>
+            </a>
+          </p>
+        </div>
       </div>
     </>
   );
