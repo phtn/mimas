@@ -85,7 +85,7 @@ export default function Donate() {
   ];
   return (
     <div className="px-1">
-      <div className="pt-5 flex overflow-auto content">
+      <div className="pt-5 max-w-8xl mx-auto sm:px-6 lg:px-1 flex overflow-auto content">
         <div>
           <h2 className="text-green-700 font-mono font-bold justify-center align-item flex mb-2 bg-gray-200 py-1 rounded-md">
             Help me improve this app!
@@ -101,7 +101,7 @@ export default function Donate() {
                     </span>
                     {item.name}
                   </p>
-                  <p className="text-xs text-pink-100 font-mono overflow">
+                  <p className="text-xs text-gray-100 font-mono overflow">
                     {item.add}
                   </p>
                 </div>

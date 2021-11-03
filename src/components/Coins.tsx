@@ -51,7 +51,7 @@ export default function CoinsPage() {
   function convertToInternationalCurrencySystem(cap: number) {
     // Nine Zeroes for Billions
     return Math.round(Number(cap)) >= 1.0e12
-      ? (Math.round(Number(cap)) / 1.0e12).toFixed(1) + "T"
+      ? (Math.round(Number(cap)) / 1.0e12).toFixed(2) + "T"
       : // Six Zeroes for Millions
       Math.round(Number(cap)) >= 1.0e9
       ? (Math.round(Number(cap)) / 1.0e9).toFixed(1) + "B"
@@ -65,8 +65,8 @@ export default function CoinsPage() {
     <>
       <div className="px-5">
         <div className="pt-5 max-w-8xl mx-auto sm:px-6 lg:px-1 overflow-auto content">
-          <div style={styles.container}>
-            <h2 className="text-green-700 font-mono font-bold justify-center align-item flex mb-2 bg-gray-200 py-1 rounded-md">
+          <div>
+            <h2 className="shadow-md text-green-700 font-mono font-bold justify-center align-item flex mb-2 bg-gray-200 py-1 border-2 border-gray-300 rounded-md">
               Top 100 Cryptos
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -141,10 +141,3 @@ export default function CoinsPage() {
     </>
   );
 }
-
-const styles = {
-  container: {
-    height: "100vh",
-    top: 100,
-  },
-};
